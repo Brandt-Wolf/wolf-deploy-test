@@ -16,7 +16,7 @@
     <repository>
       <id>github-java-services</id>
       <name>Wolf Maven Packages for Java services</name>
-      <url>https://maven.pkg.github.com/wolf-gmbh/ahu-java-services</url>
+      <url>https://maven.pkg.github.com/Brandt-Wolf/wolf-deploy-test</url>
     </repository>
   </distributionManagement>
   <dependencies>
