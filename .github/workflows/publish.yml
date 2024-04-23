@@ -1,0 +1,24 @@
+name: Publish java libraries
+on:
+  push:
+    branches:
+      - main
+permissions:
+  packages: write
+  contents: read
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup java for publishing
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Publish to github packages
+        run: mvn deploy
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+
