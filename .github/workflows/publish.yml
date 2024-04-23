@@ -20,6 +20,7 @@ jobs:
           distribution: 'temurin'
       - name: Publish to github packages
         run: mvn deploy
+        working-directory: 'wolf-deploy-module1'
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
