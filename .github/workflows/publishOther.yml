@@ -1,4 +1,4 @@
-name: Publish java libraries
+name: Publish java libraries without deploy
 on:
   workflow_dispatch:
   push:
