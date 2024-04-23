@@ -28,9 +28,10 @@ jobs:
         working-directory: 'wolf-deploy-module2'
       - name: copy jars
         run: mkdir staging && cp target/*.jar staging
+        working-directory: 'wolf-deploy-module2'
       - uses: actions/upload-artifact@v4
         with:
           name: Package
-          path: staging
+          path: wolf-deploy-module2/staging
 
 
