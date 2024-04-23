@@ -1,5 +1,6 @@
 name: Publish java libraries
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
