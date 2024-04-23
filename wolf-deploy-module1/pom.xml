@@ -12,7 +12,13 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-
+  <distributionManagement>
+    <repository>
+      <id>github-java-services</id>
+      <name>Wolf Maven Packages for Java services</name>
+      <url>https://maven.pkg.github.com/wolf-gmbh/ahu-java-services</url>
+    </repository>
+  </distributionManagement>
   <dependencies>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
