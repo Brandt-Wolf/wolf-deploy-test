@@ -1,0 +1,36 @@
+name: Publish java libraries
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'wolf-deploy-module2/**'
+permissions:
+  packages: write
+  contents: read
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup java for publishing
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          server-id: 'github-java-services'
+      - name: build maven
+        run: mvn verify
+        working-directory: 'wolf-deploy-module2'
+      - name: copy jars
+        run: mkdir staging && cp target/*.jar staging
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Package
+          path: staging
+
+
