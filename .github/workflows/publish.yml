@@ -6,9 +6,6 @@ on:
       - main
     paths:
       - 'wolf-deploy-module1/**'
-permissions:
-  packages: write
-  contents: read
 jobs:
   publish-module1:
     uses: ./.github/workflows/publishReusable.yml
