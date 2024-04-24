@@ -16,12 +16,15 @@ jobs:
       module1: ${{ steps.filter.outputs.module1 }}
       module2: ${{ steps.filter.outputs.module2 }}
     steps:
+      - uses: actions/checkout@v4
       - uses: dorny/paths-filter@v3.0.2
         id: filter
         with:
           filters: |
-            module1: 'wolf-deploy-module1/**'
-            module2: 'wolf-deploy-module2/**'
+            module1: 
+              - 'wolf-deploy-module1/**'
+            module2:
+              - 'wolf-deploy-module2/**'
   publish-module1:
     needs: changes
     if: ${{ needs.changes.outputs.module1 == true }}
