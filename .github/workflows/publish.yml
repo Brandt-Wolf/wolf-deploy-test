@@ -6,12 +6,13 @@ on:
       - main
     paths:
       - 'wolf-deploy-module1/**'
-permissions:
-  packages: write
-  contents: read
 jobs:
   publish-module1:
+    permissions:
+      packages: write
+      contents: read
     uses: ./.github/workflows/publishReusable.yml
+    secrets: inherit
     with:
       library-path: 'wolf-deploy-module1'
 
