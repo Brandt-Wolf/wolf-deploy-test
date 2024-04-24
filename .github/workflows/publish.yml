@@ -27,13 +27,13 @@ jobs:
               - 'wolf-deploy-module2/**'
   publish-module1:
     needs: changes
-    if: ${{ needs.changes.outputs.module1 == true }}
+    if: ${{ needs.changes.outputs.module1 == 'true' }}
     uses: ./.github/workflows/publishReusable.yml
     with:
       library-path: 'wolf-deploy-module1'
   publish-module2:
     needs: changes
-    if: ${{ needs.changes.outputs.module2 == true }}
+    if: ${{ needs.changes.outputs.module2 == 'true' }}
     uses: ./.github/workflows/publishReusable.yml
     with:
       library-path: 'wolf-deploy-module2'
