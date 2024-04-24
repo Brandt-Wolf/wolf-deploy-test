@@ -1,0 +1,30 @@
+name: Publish java libraries
+on:
+  workflow_call:
+    inputs:
+      library-path:
+        required: true
+        type: string
+    paths:
+      ${{ inputs.library-path }}
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup java for publishing
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          server-id: 'github-java-services'
+      - name: Publish to github packages
+        run: mvn deploy
+        working-directory: ${{ inputs.library-path }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+

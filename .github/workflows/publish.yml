@@ -1,4 +1,4 @@
-name: Publish java libraries
+name: Publish all java libraries
 on:
   workflow_dispatch:
   push:
@@ -10,23 +10,9 @@ permissions:
   packages: write
   contents: read
 jobs:
-  publish:
-    runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup java for publishing
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          server-id: 'github-java-services'
-      - name: Publish to github packages
-        run: mvn deploy
-        working-directory: 'wolf-deploy-module1'
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+  publish-module1:
+    uses: ./.github/workflows/publishReusable.yml
+    with:
+      library-path: 'wolf-deploy-module1'
 
 
