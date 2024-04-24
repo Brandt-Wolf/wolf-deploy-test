@@ -19,10 +19,8 @@ jobs:
         id: filter
         with:
           filters: |
-            module1: 
-              - 'wolf-deploy-module1/**'
-            module2:
-              - 'wolf-deploy-module2/**'
+            module1: 'wolf-deploy-module1/**'
+            module2: 'wolf-deploy-module2/**'
   publish-module1:
     needs: changes
     if: ${{ needs.changes.outputs.module1 == 'true' }}
