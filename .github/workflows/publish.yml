@@ -6,10 +6,32 @@ on:
       - main
     paths:
       - 'wolf-deploy-module1/**'
+      - 'wolf-deploy-module2/**'
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      module1: ${{ steps.filter.outputs.module1 }}
+      module2: ${{ steps.filter.outputs.module2 }}
+    steps:
+      - uses: dorny/path-filter@v3
+        id: filter
+        with:
+          filters: |
+            module1: 'wolf-deploy-module1/**'
+            module2: 'wolf-deploy-module2/**'
   publish-module1:
+    needs: changes
+    if: ${{ needs.changes.outputs.module1 == true }}
     uses: ./.github/workflows/publishReusable.yml
     with:
       library-path: 'wolf-deploy-module1'
-
+  publish-module2:
+    needs: changes
+    if: ${{ needs.changes.outputs.module2 == true }}
+    uses: ./.github/workflows/publishReusable.yml
+    with:
+      library-path: 'wolf-deploy-module2'
 
