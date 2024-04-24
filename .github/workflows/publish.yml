@@ -26,10 +26,16 @@ jobs:
   publish-module1:
     needs: changes
     if: ${{ needs.changes.outputs.module1 == 'true' }}
+    permissions:
+      packages: write
+      contents: read
     uses: ./.github/workflows/publishReusable.yml
     with:
       library-path: 'wolf-deploy-module1'
   publish-module2:
+    permissions:
+      packages: write
+      contents: read
     needs: changes
     if: ${{ needs.changes.outputs.module2 == 'true' }}
     uses: ./.github/workflows/publishReusable.yml
