@@ -28,7 +28,7 @@ jobs:
       contents: read
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/workflows/publishReusable.yml
+      - uses: actions/wolf-deploy-test
         if: ${{ needs.changes.outputs.module1 == 'true' }}
         with:
           library-path: 'wolf-deploy-module1'
