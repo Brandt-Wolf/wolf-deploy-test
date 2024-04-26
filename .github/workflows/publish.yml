@@ -23,13 +23,13 @@ jobs:
             module2: 'wolf-deploy-module2/**'
   publish-module1:
     needs: changes
-    if: ${{ needs.changes.outputs.module1 == 'true' }}
     permissions:
       packages: write
       contents: read
     runs-on: ubuntu-latest
     steps:
       - uses: ./.github/workflows/publishReusable.yml
+        if: ${{ needs.changes.outputs.module1 == 'true' }}
         with:
           library-path: 'wolf-deploy-module1'
   publish-module2:
