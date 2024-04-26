@@ -1,0 +1,23 @@
+name: 'Publish java libraries'
+description: 'Something'
+
+inputs:
+  library-path:
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v4
+    #- name: Setup java for publishing
+    - uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        server-id: 'github-java-services'
+    - name: Publish to github packages
+      run: mvn deploy
+      working-directory: ${{ inputs.library-path }}
+      env:
+      GITHUB_TOKEN: ${{ github.token }}
+
+
