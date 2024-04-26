@@ -36,7 +36,7 @@ jobs:
     permissions:
       packages: write
       contents: read
-    needs: [changes, module1]
+    needs: [changes, publish-module1]
     if: ${{ needs.changes.outputs.module2 == 'true' }}
     uses: ./.github/workflows/publishReusable.yml
     with:
