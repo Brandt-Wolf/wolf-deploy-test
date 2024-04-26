@@ -27,14 +27,16 @@ jobs:
     permissions:
       packages: write
       contents: read
-    uses: ./.github/workflows/publishReusable.yml
-    with:
-      library-path: 'wolf-deploy-module1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/workflows/publishReusable.yml
+        with:
+          library-path: 'wolf-deploy-module1'
   publish-module2:
     permissions:
       packages: write
       contents: read
-    needs: changes
+    needs: [changes, module1]
     if: ${{ needs.changes.outputs.module2 == 'true' }}
     uses: ./.github/workflows/publishReusable.yml
     with:
