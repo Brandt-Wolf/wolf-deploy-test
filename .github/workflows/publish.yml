@@ -28,7 +28,9 @@ jobs:
       contents: read
     runs-on: ubuntu-latest
     steps:
-      - run: echo "::notice:: Changes to module1 ${{needs.changes.outputs.module1}}"
+      - run: |
+          echo "::notice:: Changes to module1 ${{needs.changes.outputs.module1}}"
+          echo "Changes to module1 ${{needs.changes.outputs.module1}}" >> $GITHUB_STEP_SUMMARY
       - uses: actions/checkout@v4
         if: ${{ needs.changes.outputs.module1 == 'true' }}
       - uses: ./.github/actions/publish-library
