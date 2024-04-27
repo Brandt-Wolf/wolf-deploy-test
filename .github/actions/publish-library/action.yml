@@ -18,12 +18,12 @@ runs:
         server-id: 'github-java-services'
     - name: Run package and test
       shell: bash
-      run: mvn verify --batch-mode
+      run: mvn verify --batch-mode --no-transfer-progress
       env:
         GITHUB_TOKEN: ${{ github.token }}
       working-directory: ${{ inputs.library-path }}
     - name: Publish to github packages
-      run: mvn deploy
+      run: mvn deploy:deploy --batch-mode
       shell: bash
       env:
         GITHUB_TOKEN: ${{ github.token }}
