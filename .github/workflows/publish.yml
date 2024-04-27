@@ -35,7 +35,6 @@ jobs:
         if: ${{ needs.changes.outputs.module1 == 'true' }}
         with:
           library-path: 'wolf-deploy-module1'
-      - run: echo "module 1 has changes ${{needs.changes.outputs.module1}}" >> $GITHUB_STEP_SUMMARY
   publish-module2:
     permissions:
       packages: write
