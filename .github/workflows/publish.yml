@@ -28,6 +28,7 @@ jobs:
       contents: read
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/publish-library
         if: ${{ needs.changes.outputs.module1 == 'true' }}
         with:
