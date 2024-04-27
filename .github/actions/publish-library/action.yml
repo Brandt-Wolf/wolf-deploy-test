@@ -3,9 +3,10 @@ description: 'Something'
 
 inputs:
   library-path:
+    description: 'Path to subproject'
     required: true
 runs:
-  using: "composite"
+  using: composite
   steps:
     - uses: actions/checkout@v4
     #- name: Setup java for publishing
@@ -16,8 +17,10 @@ runs:
         server-id: 'github-java-services'
     - name: Publish to github packages
       run: mvn deploy
-      working-directory: ${{ inputs.library-path }}
+      shell: bash
       env:
-      GITHUB_TOKEN: ${{ github.token }}
+        GITHUB_TOKEN: ${{ github.token }}
+      working-directory: ${{ inputs.library-path }}
+
 
 
