@@ -28,13 +28,14 @@ jobs:
       contents: read
     runs-on: ubuntu-latest
     steps:
-      - run: echo "::notice Changes to module1 ${{needs.changes.outputs.module1}}"
+      - run: echo "::notice:: Changes to module1 ${{needs.changes.outputs.module1}}"
       - uses: actions/checkout@v4
         if: ${{ needs.changes.outputs.module1 == 'true' }}
       - uses: ./.github/actions/publish-library
         if: ${{ needs.changes.outputs.module1 == 'true' }}
         with:
           library-path: 'wolf-deploy-module1'
+      - run: echo "module 1 has changes ${{needs.changes.outputs.module1}}" >> $GITHUB_STEP_SUMMARY
   publish-module2:
     permissions:
       packages: write
