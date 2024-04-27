@@ -14,7 +14,14 @@ runs:
       with:
         java-version: '17'
         distribution: 'temurin'
+        cache: 'maven'
         server-id: 'github-java-services'
+    - name: Run package and test
+      shell: bash
+      run: mvn verify --batch-mode
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      working-directory: ${{ inputs.library-path }}
     - name: Publish to github packages
       run: mvn deploy
       shell: bash
