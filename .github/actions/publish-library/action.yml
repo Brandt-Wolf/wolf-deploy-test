@@ -23,7 +23,7 @@ runs:
         GITHUB_TOKEN: ${{ github.token }}
       working-directory: ${{ inputs.library-path }}
     - name: Publish to github packages
-      run: mvn deploy:deploy --batch-mode
+      run: mvn jar:jar deploy:deploy --batch-mode --no-transfer-progress
       shell: bash
       env:
         GITHUB_TOKEN: ${{ github.token }}
