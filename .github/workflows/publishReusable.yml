@@ -25,4 +25,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
-
+      - run: echo "module2" >> $GITHUB_STEP_SUMMARY
+          

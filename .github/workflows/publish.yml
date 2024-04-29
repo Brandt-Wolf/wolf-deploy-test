@@ -22,6 +22,7 @@ jobs:
           filters: |
             module1: 'wolf-deploy-module1/**'
             module2: 'wolf-deploy-module2/**'
+      - run: echo "Changes done to these libraries:" >> $GITHUB_STEP_SUMMARY
   publish-module1:
     needs: changes
     permissions:
@@ -33,7 +34,8 @@ jobs:
     steps:
       - run: |
           echo "::notice:: Changes to module1 $has_changes"
-          echo "Changes to module1 ${{env.has_changes}}" >> $GITHUB_STEP_SUMMARY
+      - run: echo "module1" >> $GITHUB_STEP_SUMMARY
+        if: has_changes
       - uses: actions/checkout@v4
         if: ${{ needs.changes.outputs.module1 == 'true' }}
       - uses: ./.github/actions/publish-library
