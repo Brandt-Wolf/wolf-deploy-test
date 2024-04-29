@@ -34,10 +34,11 @@ jobs:
     steps:
       - run: |
           echo "::notice:: Changes to module1 $has_changes"
+          echo "::notice:: Alternate Changes to module1 ${{env.has_changes}}"
       - run: echo "module1" >> $GITHUB_STEP_SUMMARY
         if: env.has_changes
       - uses: actions/checkout@v4
-        if: ${{ needs.changes.outputs.module1 == 'true' }}
+        if: env.has_changes
       - uses: ./.github/actions/publish-library
         if: ${{ needs.changes.outputs.module1 == 'true' }}
         with:
