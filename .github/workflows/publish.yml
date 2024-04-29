@@ -38,7 +38,7 @@ jobs:
       - run: echo "module1" >> $GITHUB_STEP_SUMMARY
         if: env.has_changes
       - uses: actions/checkout@v4
-        if: env.has_changes
+        if: env.has_changes == true
       - uses: ./.github/actions/publish-library
         if: ${{ needs.changes.outputs.module1 == 'true' }}
         with:
