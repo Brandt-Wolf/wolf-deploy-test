@@ -48,7 +48,7 @@ jobs:
       packages: write
       contents: read
     needs: [changes, publish-module1]
-    if: ${{ needs.changes.outputs.module2 == 'true' }}
+    if: ${{ needs.changes.outputs.module2 }}
     uses: ./.github/workflows/publishReusable.yml
     with:
       library-path: 'wolf-deploy-module2'
